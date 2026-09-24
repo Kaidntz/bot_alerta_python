@@ -41,6 +41,7 @@ STORES: tuple[Store, ...] = (
 
 ENABLED = {s.strip() for s in os.getenv("STORES", "").split(",") if s.strip()}
 USE_SOLOTODO = os.getenv("SOLOTODO", "1") == "1"
+NOTIFY_EVERY_RUN = os.getenv("NOTIFY_EVERY_RUN", "0") == "1"
 
 
 def active_stores() -> tuple[Store, ...]:

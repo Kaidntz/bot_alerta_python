@@ -42,6 +42,8 @@ jobs:
         env:
           MAX_PRICE: ${{ vars.MAX_PRICE || '900000' }}
           STORES: ${{ vars.STORES || 'falabella' }}
+          NOTIFY_EVERY_RUN: ${{ vars.NOTIFY_EVERY_RUN || '1' }}
+          SUMMARY_PRIORITY: ${{ vars.SUMMARY_PRIORITY || 'default' }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}

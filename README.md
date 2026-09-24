@@ -9,7 +9,7 @@ Excluye Series S, 2TB Galaxy, usados/reacondicionados y accesorios. Las consolas
 - **SoloTodo (API publica)**: fuente principal. Funciona desde GitHub Actions y cubre Falabella, Paris, Ripley, Lider, PC Factory, SP Digital, Mercado Libre y otras. Sus datos pueden tener algunas horas de atraso respecto de la tienda.
 - **Scraping directo (Playwright)**: en GitHub solo Falabella responde (`STORES=falabella`); el resto bloquea IPs de centros de datos. En un PC local puede usarse con todas las tiendas.
 
-Variables: `SOLOTODO=0` desactiva SoloTodo, `STORES=none` desactiva el scraping, `STORES=falabella,ripley` limita tiendas.
+Variables: `NOTIFY_EVERY_RUN=0` desactiva el resumen de cada revision, `SUMMARY_PRIORITY=low` lo deja silencioso, `SOLOTODO=0` desactiva SoloTodo, `STORES=none` desactiva el scraping, `STORES=falabella,ripley` limita tiendas.
 
 ## Estructura
 

@@ -116,3 +116,17 @@ def test_solotodo_fetch():
     assert offers["https://f.cl/1"].prices == (749990, 799990)
     assert not offers["https://p.cl/2"].is_deal
     assert offers["https://p.cl/2"].variant.startswith("Digital")
+
+
+def test_summary_message():
+    from bot import solotodo
+    from bot.notifiers import summarize
+
+    result = solotodo.fetch(FakeSoloTodo())
+    deals = [o for o in result.offers if o.is_deal]
+    title, body = summarize([result], deals, 900000)
+    assert title == "Revision Xbox: 1 oferta(s) bajo $900.000"
+    assert "SoloTodo: ok, 2 consola(s), 1 oferta(s)" in body
+    assert "- Falabella $749.990" in body
+    title, _ = summarize([result], [], 900000)
+    assert title == "Revision Xbox: sin stock bajo $900.000"

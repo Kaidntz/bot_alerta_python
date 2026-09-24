@@ -23,7 +23,7 @@ class Notifier(ABC):
     def from_env(cls) -> "Notifier | None": ...
 
     @abstractmethod
-    def send(self, title: str, body: str, url: str | None = None) -> None: ...
+    def send(self, title: str, body: str, url: str | None = None, priority: str = "high") -> None: ...
 
 
 class NtfyNotifier(Notifier):
@@ -35,8 +35,8 @@ class NtfyNotifier(Notifier):
         topic = os.getenv("NTFY_TOPIC")
         return cls(topic, os.getenv("NTFY_SERVER", "https://ntfy.sh")) if topic else None
 
-    def send(self, title, body, url=None):
-        headers = {"Title": title, "Priority": "high", "Tags": "video_game"}
+    def send(self, title, body, url=None, priority="high"):
+        headers = {"Title": title, "Priority": priority, "Tags": "video_game"}
         if url:
             headers["Click"] = url
         requests.post(self.endpoint, data=body.encode(), headers=headers, timeout=15).raise_for_status()
@@ -52,8 +52,13 @@ class TelegramNotifier(Notifier):
         token, chat = os.getenv("TELEGRAM_TOKEN"), os.getenv("TELEGRAM_CHAT_ID")
         return cls(token, chat) if token and chat else None
 
-    def send(self, title, body, url=None):
-        payload = {"chat_id": self.chat_id, "text": f"{title}\n\n{body}", "disable_web_page_preview": True}
+    def send(self, title, body, url=None, priority="high"):
+        payload = {
+            "chat_id": self.chat_id,
+            "text": f"{title}\n\n{body}",
+            "disable_web_page_preview": True,
+            "disable_notification": priority in ("min", "low"),
+        }
         requests.post(self.endpoint, json=payload, timeout=15).raise_for_status()
 
 
@@ -64,15 +69,37 @@ def configured() -> list[Notifier]:
     return [n for n in (cls.from_env() for cls in NOTIFIERS) if n]
 
 
-def broadcast(deals: list[Offer]) -> None:
+def _dispatch(title: str, body: str, url: str | None = None, priority: str = "high") -> None:
     targets = configured()
     if not targets:
-        log.info("Sin notificadores push configurados; solo se registra en data/alerts.json")
-        return
+        log.info("Sin notificadores push configurados")
+    for target in targets:
+        try:
+            target.send(title, body, url, priority)
+        except Exception as exc:
+            log.error("%s fallo: %s", type(target).__name__, exc)
+
+
+def broadcast(deals: list[Offer]) -> None:
     for deal in sorted(deals, key=lambda d: d.price):
-        title = f"Xbox Series X en stock: {clp(deal.price)}"
-        for target in targets:
-            try:
-                target.send(title, format_offer(deal), deal.url)
-            except Exception as exc:
-                log.error("%s fallo: %s", type(target).__name__, exc)
+        _dispatch(f"Xbox Series X en stock: {clp(deal.price)}", format_offer(deal), deal.url)
+
+
+def summarize(results, deals: list[Offer], max_price: int) -> tuple[str, str]:
+    title = (
+        f"Revision Xbox: {len(deals)} oferta(s) bajo {clp(max_price)}"
+        if deals
+        else f"Revision Xbox: sin stock bajo {clp(max_price)}"
+    )
+    lines = [
+        f"{r.store.name}: {'error' if r.error and not r.offers else 'ok'}, "
+        f"{len(r.offers)} consola(s), {sum(o.is_deal for o in r.offers)} oferta(s)"
+        for r in results
+    ]
+    lines += [f"- {d.store} {clp(d.price)} {d.variant}" for d in sorted(deals, key=lambda d: d.price)]
+    return title, "\n".join(lines)
+
+
+def send_summary(results, deals: list[Offer], max_price: int) -> None:
+    title, body = summarize(results, deals, max_price)
+    _dispatch(title, body, priority="high" if deals else os.getenv("SUMMARY_PRIORITY", "default"))

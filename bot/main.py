@@ -3,8 +3,8 @@ import asyncio
 import logging
 
 from . import solotodo
-from .config import MAX_PRICE, USE_SOLOTODO, active_stores
-from .notifiers import broadcast, clp, format_offer
+from .config import MAX_PRICE, NOTIFY_EVERY_RUN, USE_SOLOTODO, active_stores
+from .notifiers import broadcast, clp, format_offer, send_summary
 from .scraper import scrape_all
 from .state import diff_new_deals, record_alerts, record_status
 
@@ -44,6 +44,8 @@ def main() -> int:
     record_alerts(new_deals)
     if new_deals:
         broadcast(new_deals)
+    if NOTIFY_EVERY_RUN:
+        send_summary(results, deals, MAX_PRICE)
     return 0
 
 
