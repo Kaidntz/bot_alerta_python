@@ -1,69 +1,149 @@
 {
-  "checked_at": "2026-09-24T15:51:15+00:00",
+  "checked_at": "2026-09-24T17:16:05+00:00",
   "max_price": 900000,
   "stores": {
     "falabella": {
       "ok": true,
       "error": null,
       "candidates": 96,
-      "consoles": 3,
-      "deals": 3
+      "consoles": 0,
+      "deals": 0,
+      "pages": [
+        {
+          "title": "falabella.com",
+          "url": "https://www.falabella.com/falabella-cl/search?Ntt=xbox+series+x",
+          "links": 101,
+          "mentions": 48,
+          "snippet": "Menú Search Bar Hola, Inicia sesión Mi cuenta 0 location-icon Ingresa tu ubicación Venta Empresas Vende en falabella.com Tarjetas y cuentas Novios Ayuda Tipo de Entrega Envío gratis al comprar por la app sobre $49.990 en productos seleccionados. Envío a domicilio Gratis Llega hoy Llega mañana Retiro"
+        }
+      ]
     },
     "paris": {
       "ok": true,
       "error": null,
       "candidates": 0,
       "consoles": 0,
-      "deals": 0
+      "deals": 0,
+      "pages": [
+        {
+          "title": "ERROR: The request could not be satisfied",
+          "url": "https://www.paris.cl/search?q=xbox%20series%20x",
+          "links": 0,
+          "mentions": 0,
+          "snippet": "403 ERROR The request could not be satisfied. Request blocked. We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner. If you provide content to customers through CloudFront, "
+        }
+      ]
     },
     "ripley": {
       "ok": true,
       "error": null,
       "candidates": 0,
       "consoles": 0,
-      "deals": 0
+      "deals": 0,
+      "pages": [
+        {
+          "title": "Error en Ripley.com | Blocked",
+          "url": "https://simple.ripley.cl/search/xbox%20series%20x",
+          "links": 1,
+          "mentions": 0,
+          "snippet": "¡Alto, no puedes acceder! vuelve a intentarlo ¡estamos trabajando en nuestras mejores ofertas! ¿Por qué me han bloqueado? Este sitio web utiliza un servicio de seguridad para protegerse de los ataques en línea. La acción que acaba de realizar desencadenó la solución de seguridad. Hay varias acciones"
+        }
+      ]
     },
     "lider": {
       "ok": true,
       "error": null,
       "candidates": 0,
       "consoles": 0,
-      "deals": 0
+      "deals": 0,
+      "pages": [
+        {
+          "title": "Robot or human?",
+          "url": "https://www.lider.cl/blocked?url=L3NlYXJjaD9xPXhib3glMjBzZXJpZXMlMjB4&uuid=7c399542-b83b-11f1-8ec6-ee7365c9843e&vid=&g=b",
+          "links": 1,
+          "mentions": 0,
+          "snippet": "Robot or human? Activate and hold the button to confirm that you’re human. Thank You!"
+        }
+      ]
     },
     "microplay": {
       "ok": false,
-      "error": "TimeoutError: Page.goto: Timeout 45000ms exceeded.",
+      "error": "TimeoutError: Page.goto: Timeout 60000ms exceeded.",
       "candidates": 0,
       "consoles": 0,
-      "deals": 0
+      "deals": 0,
+      "pages": []
     },
     "weplay": {
       "ok": true,
       "error": null,
       "candidates": 0,
       "consoles": 0,
-      "deals": 0
+      "deals": 0,
+      "pages": [
+        {
+          "title": "Un momento…",
+          "url": "https://www.weplay.cl/catalogsearch/result/?q=xbox+series+x",
+          "links": 2,
+          "mentions": 0,
+          "snippet": "www.weplay.cl Verificación de seguridad en curso Este sitio web utiliza un servicio de seguridad para protegerse contra bots maliciosos. Esta página se muestra mientras el sitio web verifica que tú no eres un bot. Ray ID: a4036e15eb6c8245 Rendimiento y seguridad de Cloudflare Privacidad"
+        }
+      ]
     },
     "pcfactory": {
       "ok": true,
       "error": null,
       "candidates": 0,
       "consoles": 0,
-      "deals": 0
+      "deals": 0,
+      "pages": [
+        {
+          "title": "Búsqueda avanzada - pcfactory.cl",
+          "url": "https://www.pcfactory.cl/busqueda-avanzada?search=*&size=12",
+          "links": 859,
+          "mentions": 0,
+          "snippet": "¡Hola! Ingresa a tu cuenta Inicia sesión Categorías Ver todas Computadores y Tablets Partes y Piezas / Componentes Smartphones y Wearables Gamer y Poder Gráfico UPS / Energía y Energía Solar Accesorios y Periféricos Monitores y Proyectores Almacenamiento y Discos Duros Impresoras y Suministros Smart"
+        }
+      ]
     },
     "spdigital": {
       "ok": true,
       "error": null,
       "candidates": 0,
       "consoles": 0,
-      "deals": 0
+      "deals": 0,
+      "pages": [
+        {
+          "title": "Attention Required! | Cloudflare",
+          "url": "https://www.spdigital.cl/search?q=xbox%20series%20x",
+          "links": 1,
+          "mentions": 0,
+          "snippet": "Sorry, you have been blocked You are unable to access spdigital.cl Why have I been blocked? This website is using a security service to protect itself from online attacks. The action you just performed triggered the security solution. There are several actions that could trigger this block including"
+        }
+      ]
     },
     "mercadolibre": {
       "ok": true,
       "error": null,
       "candidates": 0,
       "consoles": 0,
-      "deals": 0
+      "deals": 0,
+      "pages": [
+        {
+          "title": "Mercado Libre",
+          "url": "https://www.mercadolibre.cl/gz/account-verification?go=https%3A%2F%2Flistado.mercadolibre.cl%2Fconsola-xbox-series-x&tid=844abd63-f92b-4bb6-8076-15f5b2b7e8d5",
+          "links": 3,
+          "mentions": 0,
+          "snippet": "¡Hola! Para continuar, ingresa a tu cuenta Soy nuevo Ya tengo cuenta trace-id: 844abd63-f92b-4bb6-8076-15f5b2b7e8d5 Usamos cookies para mejorar tu experiencia en Mercado Libre. Consultar más en nuestro Centro de Privacidad. Aceptar cookies Configurar cookies"
+        },
+        {
+          "title": "Mercado Libre",
+          "url": "https://www.mercadolibre.cl/gz/account-verification?go=https%3A%2F%2Flistado.mercadolibre.cl%2Fxbox-series-x-digital-edition&tid=9337d8c0-e415-4524-9266-ebfb3e8d574a",
+          "links": 3,
+          "mentions": 0,
+          "snippet": "¡Hola! Para continuar, ingresa a tu cuenta Soy nuevo Ya tengo cuenta trace-id: 9337d8c0-e415-4524-9266-ebfb3e8d574a Usamos cookies para mejorar tu experiencia en Mercado Libre. Consultar más en nuestro Centro de Privacidad. Aceptar cookies Configurar cookies"
+        }
+      ]
     }
   }
 }
