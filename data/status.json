@@ -1,0 +1,69 @@
+{
+  "checked_at": "2026-09-24T15:51:15+00:00",
+  "max_price": 900000,
+  "stores": {
+    "falabella": {
+      "ok": true,
+      "error": null,
+      "candidates": 96,
+      "consoles": 3,
+      "deals": 3
+    },
+    "paris": {
+      "ok": true,
+      "error": null,
+      "candidates": 0,
+      "consoles": 0,
+      "deals": 0
+    },
+    "ripley": {
+      "ok": true,
+      "error": null,
+      "candidates": 0,
+      "consoles": 0,
+      "deals": 0
+    },
+    "lider": {
+      "ok": true,
+      "error": null,
+      "candidates": 0,
+      "consoles": 0,
+      "deals": 0
+    },
+    "microplay": {
+      "ok": false,
+      "error": "TimeoutError: Page.goto: Timeout 45000ms exceeded.",
+      "candidates": 0,
+      "consoles": 0,
+      "deals": 0
+    },
+    "weplay": {
+      "ok": true,
+      "error": null,
+      "candidates": 0,
+      "consoles": 0,
+      "deals": 0
+    },
+    "pcfactory": {
+      "ok": true,
+      "error": null,
+      "candidates": 0,
+      "consoles": 0,
+      "deals": 0
+    },
+    "spdigital": {
+      "ok": true,
+      "error": null,
+      "candidates": 0,
+      "consoles": 0,
+      "deals": 0
+    },
+    "mercadolibre": {
+      "ok": true,
+      "error": null,
+      "candidates": 0,
+      "consoles": 0,
+      "deals": 0
+    }
+  }
+}

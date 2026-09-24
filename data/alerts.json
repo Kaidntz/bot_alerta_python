@@ -1,1 +1,45 @@
-{"alerts": [], "last_alert_at": null}
+{
+  "alerts": [
+    {
+      "store_id": "falabella",
+      "store": "Falabella",
+      "title": "Envío gratis HORI FLIGHTSTICK FOR XBOX SERIES X/S Por Sniper $ 349.990 $ 359.990 Llega hoy Retira hoy Envío Plus +",
+      "url": "https://www.falabella.com/falabella-cl/product/151012942/flightstick-for-xbox-series-xs/151012943",
+      "price": 349990,
+      "prices": [
+        349990,
+        359990
+      ],
+      "variant": "Estandar 1TB",
+      "in_stock": true,
+      "detected_at": "2026-09-24T15:51:15+00:00"
+    },
+    {
+      "store_id": "falabella",
+      "store": "Falabella",
+      "title": "Envío gratis HORI Volante Racing Wheel Overdrive - Xbox Series X - Sniper Por Sniper $ 199.990 $ 209.990 Llega hoy Retira hoy Envío Plus +",
+      "url": "https://www.falabella.com/falabella-cl/product/148493310/Volante-Racing-Wheel-Overdrive-Xbox-Series-X-Sniper/148493311",
+      "price": 209990,
+      "prices": [
+        209990
+      ],
+      "variant": "Estandar 1TB",
+      "in_stock": true,
+      "detected_at": "2026-09-24T15:51:15+00:00"
+    },
+    {
+      "store_id": "falabella",
+      "store": "Falabella",
+      "title": "FLIGHTSTICK FOR XBOX SERIES X/S",
+      "url": "https://www.falabella.com/falabella-cl/product/151012942/flightstick-for-xbox-series-xs",
+      "price": 349990,
+      "prices": [
+        349990
+      ],
+      "variant": "Estandar 1TB",
+      "in_stock": true,
+      "detected_at": "2026-09-24T15:51:15+00:00"
+    }
+  ],
+  "last_alert_at": "2026-09-24T15:51:15+00:00"
+}
