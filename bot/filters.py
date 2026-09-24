@@ -5,16 +5,19 @@ from .config import MAX_PRICE, MIN_PLAUSIBLE_PRICE
 
 SERIES_X = re.compile(r"xbox\s*series\s*x(?![a-z])", re.I)
 ALWAYS_EXCLUDE = re.compile(
-    r"series\s*s\b|galaxy|2\s*tb|usad[oa]|reacondicionad|seminuev|open\s*box|caja\s*da[nñ]ada|repuesto",
+    r"series\s*s\b|series\s*x\s*(?:[/|&,-]|y|and)\s*s\b|\bx\s*/\s*s\b|galaxy|2\s*tb|usad[oa]|reacondicionad|"
+    r"seminuev|open\s*box|caja\s*da[nñ]ada|repuesto|\bpara\s+(?:consola\s+)?xbox|\bfor\s+xbox|compatible",
     re.I,
 )
 ACCESSORY = re.compile(
     r"control|joystick|mando|juego|game\b|cable|disco|ssd|expansi|soporte|funda|skin|vinilo|sticker|"
     r"cargador|bater[ií]a|aud[ií]fono|headset|base\b|ventilador|cooler|stand|protector|compatible|"
-    r"tarjeta|gift|suscripci|game\s*pass|carcasa|mochila|bolso|estuche",
+    r"tarjeta|gift|suscripci|game\s*pass|carcasa|mochila|bolso|estuche|volante|wheel|flight\s*stick|"
+    r"arcade|pedal|teclado|mouse|micr[oó]fono|webcam|hori\b|razer|turtle|8bitdo|powera|pdp\b",
     re.I,
 )
-CONSOLE = re.compile(r"consola", re.I)
+CONSOLE = re.compile(r"consola|console", re.I)
+CONSOLE_SIGNAL = re.compile(r"consola|console|\b1\s*tb\b|digital", re.I)
 DIGITAL = re.compile(r"digital|all[\s-]*digital|sin\s*lector", re.I)
 OUT_OF_STOCK = re.compile(
     r"agotad[oa]|sin\s*stock|no\s*disponible|fuera\s*de\s*stock|pr[oó]ximamente|av[ií]same|"
@@ -50,7 +53,7 @@ def parse_prices(text: str) -> tuple[int, ...]:
 
 
 def is_target_console(title: str) -> bool:
-    if not SERIES_X.search(title) or ALWAYS_EXCLUDE.search(title):
+    if not SERIES_X.search(title) or ALWAYS_EXCLUDE.search(title) or not CONSOLE_SIGNAL.search(title):
         return False
     return bool(CONSOLE.search(title)) or not ACCESSORY.search(title)
 

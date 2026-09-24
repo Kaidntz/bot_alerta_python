@@ -72,6 +72,7 @@ def record_status(results: list[StoreResult]) -> None:
                     "candidates": r.raw_count,
                     "consoles": len(r.offers),
                     "deals": sum(o.is_deal for o in r.offers),
+                    "pages": r.diagnostics,
                 }
                 for r in results
             },

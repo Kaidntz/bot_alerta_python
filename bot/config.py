@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 MAX_PRICE = int(os.getenv("MAX_PRICE", "900000"))
 MIN_PLAUSIBLE_PRICE = 200000
 CONCURRENCY = int(os.getenv("CONCURRENCY", "3"))
-NAV_TIMEOUT_MS = 45000
+NAV_TIMEOUT_MS = 60000
 DATA_DIR = os.getenv("DATA_DIR", "data")
 
 LINK_PATTERN = r"series\s*x"
@@ -22,7 +22,7 @@ class Store:
 
 STORES: tuple[Store, ...] = (
     Store("falabella", "Falabella", ("https://www.falabella.com/falabella-cl/search?Ntt=xbox+series+x",)),
-    Store("paris", "Paris", ("https://www.paris.cl/search/?q=xbox%20series%20x",)),
+    Store("paris", "Paris", ("https://www.paris.cl/search?q=xbox%20series%20x",)),
     Store("ripley", "Ripley", ("https://simple.ripley.cl/search/xbox%20series%20x",)),
     Store("lider", "Lider", ("https://www.lider.cl/search?q=xbox%20series%20x",)),
     Store("microplay", "Microplay", ("https://www.microplay.cl/busqueda/?q=xbox+series+x",)),
@@ -33,8 +33,8 @@ STORES: tuple[Store, ...] = (
         "mercadolibre",
         "Mercado Libre",
         (
-            "https://listado.mercadolibre.cl/xbox-series-x-consola_ITEM*CONDITION_2230284_NoIndex_True",
-            "https://listado.mercadolibre.cl/xbox-series-x-digital-edition_ITEM*CONDITION_2230284_NoIndex_True",
+            "https://listado.mercadolibre.cl/consola-xbox-series-x",
+            "https://listado.mercadolibre.cl/xbox-series-x-digital-edition",
         ),
     ),
 )

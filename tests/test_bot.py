@@ -22,6 +22,10 @@ from bot.scraper import scrape_all
         ("Xbox Series X 2TB Galaxy Black", False),
         ("Juego Halo Infinite Xbox Series X", False),
         ("Xbox Series X Reacondicionada", False),
+        ("FLIGHTSTICK FOR XBOX SERIES X/S", False),
+        ("HORI Volante Racing Wheel Overdrive - Xbox Series X - Sniper", False),
+        ("Audifonos Turtle Beach Xbox Series X|S", False),
+        ("Consola Microsoft Xbox Series X Digital Edition 1TB Blanco", True),
     ],
 )
 def test_is_target_console(title, expected):
@@ -51,7 +55,8 @@ def test_scrape_fixture(server):
     [result] = asyncio.run(scrape_all((store,)))
     assert result.error is None
     offers = {o.url.rsplit("/", 1)[-1]: o for o in result.offers}
-    assert set(offers) == {"1", "2", "3", "8", "ld1"}
+    assert set(offers) == {"1", "2", "3", "8", "9", "ld1"}
+    assert offers["9"].title == "Consola Xbox Series X 1TB Negra"
     assert offers["1"].price == 719990 and offers["1"].is_deal
     assert not offers["2"].is_deal
     assert not offers["3"].in_stock
@@ -68,5 +73,5 @@ def test_state_alerts_only_once(server, tmp_path, monkeypatch):
     results = asyncio.run(scrape_all((store,)))
     first = state.diff_new_deals(results)
     state.record_alerts(first)
-    assert len(first) == 3
+    assert len(first) == 4
     assert state.diff_new_deals(results) == []

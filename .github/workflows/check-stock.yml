@@ -22,9 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -44,7 +44,15 @@ jobs:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DEBUG_DUMP: ${{ inputs.debug && '1' || '0' }}
         run: python -m bot.main ${{ inputs.debug && '--debug' || '' }}
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.debug }}
+        with:
+          name: debug-pages
+          path: debug/
+          retention-days: 3
 
       - name: Guardar estado
         run: |
