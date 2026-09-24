@@ -27,7 +27,7 @@ STORES: tuple[Store, ...] = (
     Store("lider", "Lider", ("https://www.lider.cl/search?q=xbox%20series%20x",)),
     Store("microplay", "Microplay", ("https://www.microplay.cl/busqueda/?q=xbox+series+x",)),
     Store("weplay", "Weplay", ("https://www.weplay.cl/catalogsearch/result/?q=xbox+series+x",)),
-    Store("pcfactory", "PC Factory", ("https://www.pcfactory.cl/buscar?valor=xbox%20series%20x",)),
+    Store("pcfactory", "PC Factory", ("https://www.pcfactory.cl/busqueda-avanzada?search=xbox%20series%20x",)),
     Store("spdigital", "SP Digital", ("https://www.spdigital.cl/search?q=xbox%20series%20x",)),
     Store(
         "mercadolibre",
@@ -40,7 +40,10 @@ STORES: tuple[Store, ...] = (
 )
 
 ENABLED = {s.strip() for s in os.getenv("STORES", "").split(",") if s.strip()}
+USE_SOLOTODO = os.getenv("SOLOTODO", "1") == "1"
 
 
 def active_stores() -> tuple[Store, ...]:
+    if "none" in ENABLED:
+        return ()
     return tuple(s for s in STORES if not ENABLED or s.id in ENABLED)

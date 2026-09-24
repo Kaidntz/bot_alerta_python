@@ -2,7 +2,8 @@ import argparse
 import asyncio
 import logging
 
-from .config import MAX_PRICE, active_stores
+from . import solotodo
+from .config import MAX_PRICE, USE_SOLOTODO, active_stores
 from .notifiers import broadcast, clp, format_offer
 from .scraper import scrape_all
 from .state import diff_new_deals, record_alerts, record_status
@@ -18,7 +19,10 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
-    results = asyncio.run(scrape_all(active_stores()))
+    stores = active_stores()
+    results = asyncio.run(scrape_all(stores)) if stores else []
+    if USE_SOLOTODO:
+        results.append(solotodo.fetch())
 
     if args.debug:
         for r in results:

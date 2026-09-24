@@ -4,6 +4,13 @@ Monitorea Falabella, Paris, Ripley, Lider, Microplay, Weplay, PC Factory, SP Dig
 
 Excluye Series S, 2TB Galaxy, usados/reacondicionados y accesorios. Las consolas en bundle (consola + juego) se consideran.
 
+## Fuentes
+
+- **SoloTodo (API publica)**: fuente principal. Funciona desde GitHub Actions y cubre Falabella, Paris, Ripley, Lider, PC Factory, SP Digital, Mercado Libre y otras. Sus datos pueden tener algunas horas de atraso respecto de la tienda.
+- **Scraping directo (Playwright)**: en GitHub solo Falabella responde (`STORES=falabella`); el resto bloquea IPs de centros de datos. En un PC local puede usarse con todas las tiendas.
+
+Variables: `SOLOTODO=0` desactiva SoloTodo, `STORES=none` desactiva el scraping, `STORES=falabella,ripley` limita tiendas.
+
 ## Estructura
 
 ```
@@ -11,6 +18,7 @@ bot/
   config.py      tiendas, URLs de busqueda, precio maximo
   filters.py     reglas de modelo, precio y stock
   scraper.py     Playwright + extractor generico (tarjetas y JSON-LD)
+  solotodo.py    cliente de la API publica de SoloTodo
   state.py       deduplicacion de alertas y archivos data/*.json
   notifiers.py   ntfy y Telegram (extensible)
   main.py        entrypoint

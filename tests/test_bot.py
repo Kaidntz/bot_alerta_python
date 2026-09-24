@@ -75,3 +75,44 @@ def test_state_alerts_only_once(server, tmp_path, monkeypatch):
     state.record_alerts(first)
     assert len(first) == 4
     assert state.diff_new_deals(results) == []
+
+
+class FakeSoloTodo:
+    def available_products(self, search):
+        return {
+            90860: "Microsoft Xbox Series X",
+            500001: "Microsoft Xbox Series X Digital Edition (Robot White)",
+            265618: "Microsoft Xbox Series S 1 TB",
+            500002: "Microsoft Xbox Series X 2 TB Galaxy Black Special Edition",
+        }
+
+    def entities(self, ids):
+        assert set(ids) == {90860, 500001}
+        reg = lambda avail, offer, normal: {"is_available": avail, "offer_price": offer, "normal_price": normal}
+        new = "https://schema.org/NewCondition"
+        return [
+            {"store": 9, "product": {"id": 90860}, "external_url": "https://f.cl/1", "condition": new,
+             "active_registry": reg(True, "749990.00", "799990.00")},
+            {"store": 11, "product": {"id": 500001}, "external_url": "https://p.cl/2", "condition": new,
+             "active_registry": reg(True, "949990.00", "949990.00")},
+            {"store": 18, "product": {"id": 90860}, "external_url": "https://r.cl/3", "condition": new,
+             "active_registry": reg(False, "599990.00", "599990.00")},
+            {"store": 260, "product": {"id": 90860}, "external_url": "https://m.cl/4",
+             "condition": "https://schema.org/UsedCondition", "active_registry": reg(True, "500000.00", None)},
+        ]
+
+    def store_name(self, store_id):
+        return {9: "Falabella", 11: "Paris"}.get(store_id, f"Tienda {store_id}")
+
+
+def test_solotodo_fetch():
+    from bot import solotodo
+
+    result = solotodo.fetch(FakeSoloTodo())
+    assert result.error is None
+    offers = {o.url: o for o in result.offers}
+    assert set(offers) == {"https://f.cl/1", "https://p.cl/2"}
+    assert offers["https://f.cl/1"].is_deal and offers["https://f.cl/1"].store == "Falabella"
+    assert offers["https://f.cl/1"].prices == (749990, 799990)
+    assert not offers["https://p.cl/2"].is_deal
+    assert offers["https://p.cl/2"].variant.startswith("Digital")
